@@ -13,6 +13,14 @@
 		49B0FCE61524E52E000E5A0F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCE41524E52E000E5A0F /* Credits.rtf */; };
 		49B0FCE91524E52E000E5A0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCE81524E52E000E5A0F /* AppDelegate.m */; };
 		49B0FCEC1524E52F000E5A0F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCEA1524E52F000E5A0F /* MainMenu.xib */; };
+		49B0FCF91524E669000E5A0F /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCF61524E669000E5A0F /* TextureManager.m */; };
+		49B0FCFA1524E669000E5A0F /* TextureObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCF81524E669000E5A0F /* TextureObject.m */; };
+		49B0FCFD1524E676000E5A0F /* MyOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCFC1524E676000E5A0F /* MyOpenGLView.m */; };
+		49B0FD031524E6A2000E5A0F /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCFE1524E6A2000E5A0F /* blocks.png */; };
+		49B0FD041524E6A2000E5A0F /* c001.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCFF1524E6A2000E5A0F /* c001.png */; };
+		49B0FD051524E6A2000E5A0F /* c002.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FD001524E6A2000E5A0F /* c002.png */; };
+		49B0FD061524E6A2000E5A0F /* c003.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FD011524E6A2000E5A0F /* c003.png */; };
+		49B0FD071524E6A2000E5A0F /* c004.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FD021524E6A2000E5A0F /* c004.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +37,17 @@
 		49B0FCE71524E52E000E5A0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		49B0FCE81524E52E000E5A0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		49B0FCEB1524E52F000E5A0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		49B0FCF51524E669000E5A0F /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		49B0FCF61524E669000E5A0F /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
+		49B0FCF71524E669000E5A0F /* TextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureObject.h; sourceTree = "<group>"; };
+		49B0FCF81524E669000E5A0F /* TextureObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureObject.m; sourceTree = "<group>"; };
+		49B0FCFB1524E676000E5A0F /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView.h; sourceTree = "<group>"; };
+		49B0FCFC1524E676000E5A0F /* MyOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOpenGLView.m; sourceTree = "<group>"; };
+		49B0FCFE1524E6A2000E5A0F /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blocks.png; sourceTree = "<group>"; };
+		49B0FCFF1524E6A2000E5A0F /* c001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c001.png; sourceTree = "<group>"; };
+		49B0FD001524E6A2000E5A0F /* c002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c002.png; sourceTree = "<group>"; };
+		49B0FD011524E6A2000E5A0F /* c003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c003.png; sourceTree = "<group>"; };
+		49B0FD021524E6A2000E5A0F /* c004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c004.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +101,9 @@
 		49B0FCDB1524E52E000E5A0F /* Silverline-Reloaded */ = {
 			isa = PBXGroup;
 			children = (
+				49B0FCF41524E649000E5A0F /* Support */,
+				49B0FCF31524E62D000E5A0F /* View */,
+				49B0FCF21524E621000E5A0F /* Resources */,
 				49B0FCE71524E52E000E5A0F /* AppDelegate.h */,
 				49B0FCE81524E52E000E5A0F /* AppDelegate.m */,
 				49B0FCEA1524E52F000E5A0F /* MainMenu.xib */,
@@ -100,6 +122,38 @@
 				49B0FCE41524E52E000E5A0F /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49B0FCF21524E621000E5A0F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCFE1524E6A2000E5A0F /* blocks.png */,
+				49B0FCFF1524E6A2000E5A0F /* c001.png */,
+				49B0FD001524E6A2000E5A0F /* c002.png */,
+				49B0FD011524E6A2000E5A0F /* c003.png */,
+				49B0FD021524E6A2000E5A0F /* c004.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		49B0FCF31524E62D000E5A0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCFB1524E676000E5A0F /* MyOpenGLView.h */,
+				49B0FCFC1524E676000E5A0F /* MyOpenGLView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		49B0FCF41524E649000E5A0F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCF51524E669000E5A0F /* TextureManager.h */,
+				49B0FCF61524E669000E5A0F /* TextureManager.m */,
+				49B0FCF71524E669000E5A0F /* TextureObject.h */,
+				49B0FCF81524E669000E5A0F /* TextureObject.m */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +209,11 @@
 				49B0FCE01524E52E000E5A0F /* InfoPlist.strings in Resources */,
 				49B0FCE61524E52E000E5A0F /* Credits.rtf in Resources */,
 				49B0FCEC1524E52F000E5A0F /* MainMenu.xib in Resources */,
+				49B0FD031524E6A2000E5A0F /* blocks.png in Resources */,
+				49B0FD041524E6A2000E5A0F /* c001.png in Resources */,
+				49B0FD051524E6A2000E5A0F /* c002.png in Resources */,
+				49B0FD061524E6A2000E5A0F /* c003.png in Resources */,
+				49B0FD071524E6A2000E5A0F /* c004.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +226,9 @@
 			files = (
 				49B0FCE21524E52E000E5A0F /* main.m in Sources */,
 				49B0FCE91524E52E000E5A0F /* AppDelegate.m in Sources */,
+				49B0FCF91524E669000E5A0F /* TextureManager.m in Sources */,
+				49B0FCFA1524E669000E5A0F /* TextureObject.m in Sources */,
+				49B0FCFD1524E676000E5A0F /* MyOpenGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
