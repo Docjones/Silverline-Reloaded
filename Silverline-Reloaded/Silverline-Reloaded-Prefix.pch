@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Silverline-Reloaded' target in the 'Silverline-Reloaded' project
+//
+
+#ifdef __OBJC__
+  #import <Cocoa/Cocoa.h>
+#endif

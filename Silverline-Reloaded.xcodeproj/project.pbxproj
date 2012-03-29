@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		49B0FCD61524E52E000E5A0F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B0FCD51524E52E000E5A0F /* Cocoa.framework */; };
+		49B0FCE01524E52E000E5A0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCDE1524E52E000E5A0F /* InfoPlist.strings */; };
+		49B0FCE21524E52E000E5A0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCE11524E52E000E5A0F /* main.m */; };
+		49B0FCE61524E52E000E5A0F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCE41524E52E000E5A0F /* Credits.rtf */; };
+		49B0FCE91524E52E000E5A0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCE81524E52E000E5A0F /* AppDelegate.m */; };
+		49B0FCEC1524E52F000E5A0F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCEA1524E52F000E5A0F /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		49B0FCD11524E52E000E5A0F /* Silverline-Reloaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Silverline-Reloaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49B0FCD51524E52E000E5A0F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		49B0FCD81524E52E000E5A0F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		49B0FCD91524E52E000E5A0F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		49B0FCDA1524E52E000E5A0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		49B0FCDD1524E52E000E5A0F /* Silverline-Reloaded-Info.plist */ = {isa = PBXFileReference; path = "Silverline-Reloaded-Info.plist"; sourceTree = "<group>"; };
+		49B0FCDF1524E52E000E5A0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49B0FCE11524E52E000E5A0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		49B0FCE31524E52E000E5A0F /* Silverline-Reloaded-Prefix.pch */ = {isa = PBXFileReference; path = "Silverline-Reloaded-Prefix.pch"; sourceTree = "<group>"; };
+		49B0FCE51524E52E000E5A0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		49B0FCE71524E52E000E5A0F /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		49B0FCE81524E52E000E5A0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		49B0FCEB1524E52F000E5A0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49B0FCCE1524E52E000E5A0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49B0FCD61524E52E000E5A0F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49B0FCC61524E52E000E5A0F = {
+			isa = PBXGroup;
+			children = (
+				49B0FCDB1524E52E000E5A0F /* Silverline-Reloaded */,
+				49B0FCD41524E52E000E5A0F /* Frameworks */,
+				49B0FCD21524E52E000E5A0F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49B0FCD21524E52E000E5A0F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCD11524E52E000E5A0F /* Silverline-Reloaded.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49B0FCD41524E52E000E5A0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCD51524E52E000E5A0F /* Cocoa.framework */,
+				49B0FCD71524E52E000E5A0F /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49B0FCD71524E52E000E5A0F /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCD81524E52E000E5A0F /* AppKit.framework */,
+				49B0FCD91524E52E000E5A0F /* CoreData.framework */,
+				49B0FCDA1524E52E000E5A0F /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		49B0FCDB1524E52E000E5A0F /* Silverline-Reloaded */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCE71524E52E000E5A0F /* AppDelegate.h */,
+				49B0FCE81524E52E000E5A0F /* AppDelegate.m */,
+				49B0FCEA1524E52F000E5A0F /* MainMenu.xib */,
+				49B0FCDC1524E52E000E5A0F /* Supporting Files */,
+			);
+			path = "Silverline-Reloaded";
+			sourceTree = "<group>";
+		};
+		49B0FCDC1524E52E000E5A0F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49B0FCDD1524E52E000E5A0F /* Silverline-Reloaded-Info.plist */,
+				49B0FCDE1524E52E000E5A0F /* InfoPlist.strings */,
+				49B0FCE11524E52E000E5A0F /* main.m */,
+				49B0FCE31524E52E000E5A0F /* Silverline-Reloaded-Prefix.pch */,
+				49B0FCE41524E52E000E5A0F /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		49B0FCD01524E52E000E5A0F /* Silverline-Reloaded */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49B0FCEF1524E52F000E5A0F /* Build configuration list for PBXNativeTarget "Silverline-Reloaded" */;
+			buildPhases = (
+				49B0FCCD1524E52E000E5A0F /* Sources */,
+				49B0FCCE1524E52E000E5A0F /* Frameworks */,
+				49B0FCCF1524E52E000E5A0F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Silverline-Reloaded";
+			productName = "Silverline-Reloaded";
+			productReference = 49B0FCD11524E52E000E5A0F /* Silverline-Reloaded.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49B0FCC81524E52E000E5A0F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 49B0FCCB1524E52E000E5A0F /* Build configuration list for PBXProject "Silverline-Reloaded" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 49B0FCC61524E52E000E5A0F;
+			productRefGroup = 49B0FCD21524E52E000E5A0F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49B0FCD01524E52E000E5A0F /* Silverline-Reloaded */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49B0FCCF1524E52E000E5A0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49B0FCE01524E52E000E5A0F /* InfoPlist.strings in Resources */,
+				49B0FCE61524E52E000E5A0F /* Credits.rtf in Resources */,
+				49B0FCEC1524E52F000E5A0F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49B0FCCD1524E52E000E5A0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49B0FCE21524E52E000E5A0F /* main.m in Sources */,
+				49B0FCE91524E52E000E5A0F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		49B0FCDE1524E52E000E5A0F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49B0FCDF1524E52E000E5A0F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		49B0FCE41524E52E000E5A0F /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49B0FCE51524E52E000E5A0F /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		49B0FCEA1524E52F000E5A0F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49B0FCEB1524E52F000E5A0F /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		49B0FCED1524E52F000E5A0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		49B0FCEE1524E52F000E5A0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		49B0FCF01524E52F000E5A0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Silverline-Reloaded/Silverline-Reloaded-Prefix.pch";
+				INFOPLIST_FILE = "Silverline-Reloaded/Silverline-Reloaded-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		49B0FCF11524E52F000E5A0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Silverline-Reloaded/Silverline-Reloaded-Prefix.pch";
+				INFOPLIST_FILE = "Silverline-Reloaded/Silverline-Reloaded-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49B0FCCB1524E52E000E5A0F /* Build configuration list for PBXProject "Silverline-Reloaded" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49B0FCED1524E52F000E5A0F /* Debug */,
+				49B0FCEE1524E52F000E5A0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49B0FCEF1524E52F000E5A0F /* Build configuration list for PBXNativeTarget "Silverline-Reloaded" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49B0FCF01524E52F000E5A0F /* Debug */,
+				49B0FCF11524E52F000E5A0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49B0FCC81524E52E000E5A0F /* Project object */;
+}
