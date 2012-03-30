@@ -11,6 +11,7 @@
 
 @interface TextureManager:NSObject {
 	NSMutableArray	*_textures;								// Array mit geladenen textur-Objekten
+  TextureObject *_currentTextureObject;
 }
 
 + (TextureManager*)sharedManager;						// Instanz

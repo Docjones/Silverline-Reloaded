@@ -18,17 +18,23 @@
 - (id)init {
   self = [super init];
   if (self) {
-    _textureManager=[TextureManager sharedManager];
+    //    _textureManager=[TextureManager sharedManager];
+    _player=[[Player alloc] init];
+    _world=[[World alloc] init];
   }
   return self;
 }
 
 - (void)awakeFromNib {
-  _textureManager=[TextureManager sharedManager];
+  //  _textureManager=[TextureManager sharedManager];
+  _player=[[Player alloc] init];
+  _world=[[World alloc] init];
 }
 
 - (void)dealloc {
+  [_player release];
   [_world release];
+
   [super dealloc];
 }
 
@@ -44,23 +50,18 @@
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-//  glViewport(0, 0, [_map getWidth]*16, [_map getHeigth]*16);
-//  glMatrixMode(GL_PROJECTION);
-//  glLoadIdentity();
-//  
-//  glOrtho(0, [_map getWidth]*16, [_map getHeigth]*16, 0,-1,1); // heigth + zero exchanged (turn upside down) 
-//  glMatrixMode(GL_MODELVIEW);
-//  glLoadIdentity();
-  
 }
 
 - (void) prepareOpenGL {
   [[self window] makeFirstResponder:self];
   
+  //  GLuint units;
+  // glGetIntegerv(GL_MAX_TEXTURE_UNITS, &units);
+  // NSLog(@"Texture Units: %d",units);
+  // => 8 Units
+  
   glDisable(GL_DEPTH_TEST);
   glDisable(GL_BLEND);
-  glEnable(GL_TEXTURE_2D);
-  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
   
   // activate pointer to vertex & texture array
   glEnableClientState(GL_VERTEX_ARRAY);
@@ -84,17 +85,13 @@
 - (void)drawRect:(NSRect)rect {
   lastTime=(double)CFAbsoluteTimeGetCurrent();
   delta=(lastTime-startTime);
-  [self draw:delta];
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  [_world draw:rect withTimedDelta:delta];
+  [_player drawWithTimedDelta:delta atX:10 andY:10];
+  
+  glFlush();
   startTime=lastTime;
   //  [FPS setDoubleValue:1.0f/delta];
 }
-
--(void)draw:(double)d {
-  glClear(GL_COLOR_BUFFER_BIT);
-  // Drawing code goes here
-  
-  glFlush();
-}
-
-
 @end

@@ -46,14 +46,20 @@
 	[_textures release];	
 }
 
+-(void)dealloc {
+  [self cleanUp];
+  [super dealloc];
+}
+
 - (GLuint) textureByName:(NSString *)textureName {
 
   // Texture suchen
   for (id e in _textures) {
-    if([[e textureName] isEqualToString:textureName])
+    if([[e textureName] isEqualToString:textureName]) {
+      _currentTextureObject=e;
 			return [e textureID];
+    }
   }
-	
   // nicht gefunden -> laden und einfuegen
   // Load the texture .png from the bundle file and get the Bitmap representativ off of it
   NSString* imageName = [[NSBundle mainBundle] pathForResource:textureName ofType:@"png"];
@@ -84,16 +90,19 @@
   
   glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,(int)[result pixelsWide],(int)[result pixelsHigh],0,GL_RGB,GL_UNSIGNED_BYTE,
                [result bitmapData]);
-  [result release];
 	
 	//Neues Textureobjekt erzeugen
 	TextureObject *t = [[TextureObject alloc]init];
 	[t setTextureID:tmpTexture];
 	[t setTextureName:textureName];
-	
+  [t setWidth:[result pixelsWide]];
+  [t setHeight:[result pixelsHigh]];
 	[_textures addObject:t];
+	_currentTextureObject=t;
+
+  [result release];
 	[t release];
-	
+  
 	return tmpTexture;	
 }
 
@@ -114,7 +123,7 @@
   if (!t) {
     t=malloc(sizeof(GLint)*8);
   } 
-  int x=b%32, y=b/16;	
+  int x=b%([_currentTextureObject width]/TILE_WIDTH), y=b/([_currentTextureObject width]/TILE_WIDTH);	
 
   t[0]=TILE_WIDTH*x;            t[1]=TILE_HEIGTH*y;
   t[2]=TILE_WIDTH*x+TILE_WIDTH; t[3]=TILE_HEIGTH*y;

@@ -11,6 +11,8 @@
 
 @implementation TextureObject
 
+@synthesize width,height;
+
 - (id)init
 {
 	self = [super init];
@@ -104,6 +106,5 @@
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, value);
 	_envParam = value;
 }
-
 
 @end

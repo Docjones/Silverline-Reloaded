@@ -20,6 +20,9 @@
 	
 	GLuint	_envParam;				// Env Paramter	GL_MODULATE (standard) GL_DECAL GL_BLEND GL_REPLACE
 	NSString *_textureName;			// Texture Name (Filename)
+  
+  int     width;
+  int     height;
 }
 
 //@property GLuint _textureID;
@@ -29,6 +32,9 @@
 //@property GLuint _magFilter;
 //@property GLuint _envParam;
 //@property NSString *_textureName;
+
+@property int width;
+@property int height;
 
 
 /**

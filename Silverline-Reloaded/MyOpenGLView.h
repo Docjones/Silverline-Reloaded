@@ -10,6 +10,8 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/glu.h>
 #import "TextureManager.h"
+#import "World.h"
+#import "Player.h"
 
 @interface MyOpenGLView : NSOpenGLView   {
   // OpenGL
@@ -18,11 +20,10 @@
   double delta;
   double framedelta;
   
-  TextureManager *_textureManager;
+   TextureManager *_textureManager;
+  World *_world;
+  Player *_player;
   NSTimer *aTimer;
 }
-
-// OpenGL
--(void)draw:(double)d;
 
 @end
