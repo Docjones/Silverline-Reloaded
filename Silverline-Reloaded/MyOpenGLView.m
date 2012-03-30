@@ -55,13 +55,14 @@
 - (void) prepareOpenGL {
   [[self window] makeFirstResponder:self];
   
-  //  GLuint units;
+  // GLuint units;
   // glGetIntegerv(GL_MAX_TEXTURE_UNITS, &units);
   // NSLog(@"Texture Units: %d",units);
   // => 8 Units
   
   glDisable(GL_DEPTH_TEST);
-  glDisable(GL_BLEND);
+  glEnable(GL_BLEND);
+  glEnable(GL_TEXTURE_2D);
   
   // activate pointer to vertex & texture array
   glEnableClientState(GL_VERTEX_ARRAY);
@@ -86,8 +87,10 @@
   lastTime=(double)CFAbsoluteTimeGetCurrent();
   delta=(lastTime-startTime);
   glClear(GL_COLOR_BUFFER_BIT);
+  glColor4f(1.0,1.0,1.0,1.0);
 
   [_world draw:rect withTimedDelta:delta];
+  glBlendFunc(GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
   [_player drawWithTimedDelta:delta atX:10 andY:10];
   
   glFlush();

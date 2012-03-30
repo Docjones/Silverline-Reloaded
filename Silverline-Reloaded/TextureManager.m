@@ -52,6 +52,10 @@
 }
 
 - (GLuint) textureByName:(NSString *)textureName {
+  return [self textureByName:textureName needsAlpha:NO];
+}
+
+- (GLuint) textureByName:(NSString *)textureName needsAlpha:(BOOL)needsAlpha {
 
   // Texture suchen
   for (id e in _textures) {
@@ -70,13 +74,40 @@
                                                                                               hints:NULL]];
   [blocks release];
   
+  // Check if ALPHA exists or has to be added
+  int samplesPerPixel = [result samplesPerPixel];
+  int pixelsWide = [result pixelsWide];
+  int pixelsHigh = [result pixelsHigh];
+  int bytesPerRow = [result bytesPerRow];
+  
+  void * myData;
+  if (samplesPerPixel==4 || needsAlpha==YES)  {
+    samplesPerPixel=4;
+    bytesPerRow=pixelsWide*samplesPerPixel;
+    // Setup Rendering area
+    CGRect rect = {{0, 0}, {pixelsWide, pixelsHigh}};
+    myData = calloc(pixelsWide * samplesPerPixel, pixelsHigh);
+    
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef myBitmapContext = CGBitmapContextCreate (myData,
+                                                          pixelsWide, pixelsHigh, 8,
+                                                          bytesPerRow, space,
+                                                          kCGBitmapByteOrder32Host |
+                                                          kCGImageAlphaPremultipliedFirst);
+    
+    CGContextSetBlendMode(myBitmapContext, kCGBlendModeCopy);
+    CGContextDrawImage(myBitmapContext, rect, [result CGImage]);
+    CGContextRelease(myBitmapContext);
+    CGColorSpaceRelease(space);
+  }
+  
   glMatrixMode(GL_TEXTURE);
   glLoadIdentity();
-  glScalef(1/(float)[result pixelsWide], 1/(float)[result pixelsHigh], 1); // scaling the texture to get pixel coordinates
-  
+  glScalef(1/(float)pixelsWide, 1/(float)pixelsHigh, 1); // scaling the texture to get pixel coordinates  
+  	
   glMatrixMode(GL_MODELVIEW);
-  glPixelStorei(GL_UNPACK_ROW_LENGTH, (int)[result bytesPerRow]/(int)[result samplesPerPixel]); 
-  glPixelStorei (GL_UNPACK_ALIGNMENT, 1);   
+  glPixelStorei(GL_UNPACK_ROW_LENGTH, (int)bytesPerRow/(int)samplesPerPixel); 
+  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);   
   
   GLuint tmpTexture;
   glGenTextures (1, &tmpTexture);
@@ -88,15 +119,21 @@
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);   // Clamped to 0.0 or 1.0
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
   
-  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,(int)[result pixelsWide],(int)[result pixelsHigh],0,GL_RGB,GL_UNSIGNED_BYTE,
-               [result bitmapData]);
+  glTexImage2D(GL_TEXTURE_2D,0,
+               (samplesPerPixel==4)?GL_RGBA8:GL_RGB,
+               pixelsWide,
+               pixelsHigh,
+               0,
+               (samplesPerPixel==4)?GL_BGRA_EXT:GL_RGB,
+               (samplesPerPixel==4)?GL_UNSIGNED_INT_8_8_8_8_REV:GL_UNSIGNED_BYTE,
+               (samplesPerPixel==4)?myData:[result bitmapData]);
 	
 	//Neues Textureobjekt erzeugen
 	TextureObject *t = [[TextureObject alloc]init];
 	[t setTextureID:tmpTexture];
 	[t setTextureName:textureName];
-  [t setWidth:[result pixelsWide]];
-  [t setHeight:[result pixelsHigh]];
+  [t setWidth:pixelsWide];
+  [t setHeight:pixelsHigh];
 	[_textures addObject:t];
 	_currentTextureObject=t;
 

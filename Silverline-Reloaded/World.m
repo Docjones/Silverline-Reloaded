@@ -23,10 +23,7 @@
 
 - (void) draw:(NSRect)rect withTimedDelta:(double)d {
   GLint *t;
-  glActiveTexture(GL_TEXTURE0);
-  glEnable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, [_textureManager textureByName:@"blocks"]);
-  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
   for (int x=0; x<[_map getWidth] ; x++) {
     for (int y=0; y<[_map getHeight] ; y++) {

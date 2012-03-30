@@ -16,6 +16,7 @@
 
 + (TextureManager*)sharedManager;						// Instanz
 - (GLuint)textureByName:(NSString *)textureName;			// Liefert eine Textur-ID anhand des Pfads (Dateiname)
+- (GLuint) textureByName:(NSString *)textureName needsAlpha:(BOOL)needsAlpha ; // fügt ALPHA Kanal zu
 - (TextureObject*)textureObjectByID:(GLuint)textureID;	// Liefert ein Textur-Objekt anhand der ID
 - (GLint *)getTileX:(int)x Y:(int)y;
 - (GLint *)getBlockWithNumber:(int)b;
