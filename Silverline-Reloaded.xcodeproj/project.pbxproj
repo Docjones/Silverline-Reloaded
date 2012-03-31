@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49ABF07D152751E100315A8A /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 49ABF07C152751E100315A8A /* icon.icns */; };
 		49B0FCD61524E52E000E5A0F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B0FCD51524E52E000E5A0F /* Cocoa.framework */; };
 		49B0FCE01524E52E000E5A0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCDE1524E52E000E5A0F /* InfoPlist.strings */; };
 		49B0FCE21524E52E000E5A0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCE11524E52E000E5A0F /* main.m */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49ABF07C152751E100315A8A /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		49B0FCD11524E52E000E5A0F /* Silverline-Reloaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Silverline-Reloaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B0FCD51524E52E000E5A0F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		49B0FCD81524E52E000E5A0F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -77,6 +79,7 @@
 		49B0FCC61524E52E000E5A0F = {
 			isa = PBXGroup;
 			children = (
+				49ABF07C152751E100315A8A /* icon.icns */,
 				49B0FD0F1524F397000E5A0F /* OpenGL.framework */,
 				49B0FCDB1524E52E000E5A0F /* Silverline-Reloaded */,
 				49B0FCD41524E52E000E5A0F /* Frameworks */,
@@ -241,6 +244,7 @@
 				49B0FD051524E6A2000E5A0F /* c002.png in Resources */,
 				49B0FD061524E6A2000E5A0F /* c003.png in Resources */,
 				49B0FD071524E6A2000E5A0F /* c004.png in Resources */,
+				49ABF07D152751E100315A8A /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +382,7 @@
 				49B0FCF11524E52F000E5A0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

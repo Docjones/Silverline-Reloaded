@@ -10,7 +10,7 @@
 
 @implementation MyOpenGLView
 
-#define TARGET_FPS 60.0f
+#define TARGET_FPS 0.5f
 
 ////////////////////////////////////////////
 // OpenGL
@@ -60,7 +60,12 @@
   // NSLog(@"Texture Units: %d",units);
   // => 8 Units
   
+  // Turn off unnecessary operations
   glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);
+  glDisable(GL_CULL_FACE);
+  glDisable(GL_STENCIL_TEST);
+  glDisable(GL_DITHER);
   glEnable(GL_BLEND);
   glEnable(GL_TEXTURE_2D);
   
@@ -86,11 +91,11 @@
 - (void)drawRect:(NSRect)rect {
   lastTime=(double)CFAbsoluteTimeGetCurrent();
   delta=(lastTime-startTime);
+  
   glClear(GL_COLOR_BUFFER_BIT);
-  glColor4f(1.0,1.0,1.0,1.0);
 
   [_world draw:rect withTimedDelta:delta];
-  glBlendFunc(GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
+ 
   [_player drawWithTimedDelta:delta atX:10 andY:10];
   
   glFlush();

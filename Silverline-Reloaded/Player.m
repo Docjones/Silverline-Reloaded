@@ -26,9 +26,12 @@
     16*x+16,16*y+16,
     16*x   ,16*y+16
   };
-
-  glBindTexture(GL_TEXTURE_2D, [_textureManager textureByName:@"c003" needsAlpha:YES]);
+  glActiveTexture(GL_TEXTURE1);
+  glEnable(GL_TEXTURE_2D);
+  glBindTexture(GL_TEXTURE_2D, [_textureManager textureByName:@"c003"]);
+  glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
   
+ 
   t=[_textureManager getBlockWithNumber:12];
 
   glVertexPointer(2, GL_INT, 0, v);
