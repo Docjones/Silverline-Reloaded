@@ -76,7 +76,6 @@
   aTimer=[[NSTimer timerWithTimeInterval:1.0f/TARGET_FPS target:self selector:@selector(animationTrigger:) userInfo:self repeats:YES] retain];	
   [[NSRunLoop currentRunLoop] addTimer:aTimer forMode:NSDefaultRunLoopMode];
   [[NSRunLoop currentRunLoop] addTimer:aTimer forMode:NSEventTrackingRunLoopMode];
-  [[NSRunLoop currentRunLoop] addTimer:aTimer forMode:NSDefaultRunLoopMode];
   
   startTime=0.0f;
   lastTime=0.0f;
@@ -96,7 +95,7 @@
 
   [_world draw:rect withTimedDelta:delta];
  
-  [_player drawWithTimedDelta:delta atX:10 andY:10];
+  [_player drawWithTimedDelta:delta];
   
   glFlush();
   startTime=lastTime;

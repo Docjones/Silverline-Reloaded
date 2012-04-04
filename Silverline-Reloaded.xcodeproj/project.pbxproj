@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4904C73B152C5B240077D5AD /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904C73A152C5B240077D5AD /* Server.m */; };
+		4904C73D152C63C60077D5AD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4904C73C152C63C60077D5AD /* Security.framework */; };
+		4904C744152CBDAF0077D5AD /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904C743152CBDAF0077D5AD /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		49ABF07D152751E100315A8A /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 49ABF07C152751E100315A8A /* icon.icns */; };
 		49B0FCD61524E52E000E5A0F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B0FCD51524E52E000E5A0F /* Cocoa.framework */; };
 		49B0FCE01524E52E000E5A0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B0FCDE1524E52E000E5A0F /* InfoPlist.strings */; };
@@ -29,6 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4904C739152C5B240077D5AD /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		4904C73A152C5B240077D5AD /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
+		4904C73C152C63C60077D5AD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4904C742152CBDAE0077D5AD /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		4904C743152CBDAF0077D5AD /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		4971802115285ADE00AC95A4 /* Messages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
 		49ABF07C152751E100315A8A /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		49B0FCD11524E52E000E5A0F /* Silverline-Reloaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Silverline-Reloaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B0FCD51524E52E000E5A0F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -68,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4904C73D152C63C60077D5AD /* Security.framework in Frameworks */,
 				49B0FD101524F398000E5A0F /* OpenGL.framework in Frameworks */,
 				49B0FCD61524E52E000E5A0F /* Cocoa.framework in Frameworks */,
 			);
@@ -76,9 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4971801C15284F8C00AC95A4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4904C742152CBDAE0077D5AD /* AsyncSocket.h */,
+				4904C743152CBDAF0077D5AD /* AsyncSocket.m */,
+				4904C739152C5B240077D5AD /* Server.h */,
+				4904C73A152C5B240077D5AD /* Server.m */,
+				4971802115285ADE00AC95A4 /* Messages.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 		49B0FCC61524E52E000E5A0F = {
 			isa = PBXGroup;
 			children = (
+				4904C73C152C63C60077D5AD /* Security.framework */,
 				49ABF07C152751E100315A8A /* icon.icns */,
 				49B0FD0F1524F397000E5A0F /* OpenGL.framework */,
 				49B0FCDB1524E52E000E5A0F /* Silverline-Reloaded */,
@@ -117,6 +140,7 @@
 		49B0FCDB1524E52E000E5A0F /* Silverline-Reloaded */ = {
 			isa = PBXGroup;
 			children = (
+				4971801C15284F8C00AC95A4 /* Networking */,
 				49B0FD081524E85F000E5A0F /* Model */,
 				49B0FCF41524E649000E5A0F /* Support */,
 				49B0FCF31524E62D000E5A0F /* View */,
@@ -263,6 +287,8 @@
 				49B0FD0B1524E875000E5A0F /* World.m in Sources */,
 				49B0FD0E1524E91A000E5A0F /* Map.m in Sources */,
 				49B0FD131524F771000E5A0F /* Player.m in Sources */,
+				4904C73B152C5B240077D5AD /* Server.m in Sources */,
+				4904C744152CBDAF0077D5AD /* AsyncSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,9 @@
 
 @interface Player : NSObject {
   TextureManager *_textureManager;
+  int xpos;
+  int ypos;
+  
 }
-- (void) drawWithTimedDelta:(double)d atX:(int)x andY:(int)y;
+- (void) drawWithTimedDelta:(double)d;
 @end

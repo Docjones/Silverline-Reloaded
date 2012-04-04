@@ -13,18 +13,20 @@
 - (id)init {
   self = [super init];
   if (self) {
+    xpos=2;
+    ypos=2;
     _textureManager=[TextureManager sharedManager];
   }
   return self;
 }
 
-- (void) drawWithTimedDelta:(double)d atX:(int)x andY:(int)y {
+- (void) drawWithTimedDelta:(double)d {
   GLint *t;
   GLint v[] = { 
-    16*x   ,16*y,
-    16*x+16,16*y,
-    16*x+16,16*y+16,
-    16*x   ,16*y+16
+    16*xpos   ,16*ypos,
+    16*xpos+16,16*ypos,
+    16*xpos+16,16*ypos+16,
+    16*xpos   ,16*ypos+16
   };
   glActiveTexture(GL_TEXTURE1);
   glEnable(GL_TEXTURE_2D);
@@ -38,6 +40,12 @@
   glTexCoordPointer(2, GL_INT, 0, t);
   glDrawArrays(GL_QUADS, 0, 4);
       
+}
+
+- (void) moveByX:(int)dx andY:(int)dy {
+  // TODO: Mapcheck will go here
+  xpos+=dx;
+  ypos+=dy;
 }
 
 - (void)dealloc {
