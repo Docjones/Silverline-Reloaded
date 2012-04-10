@@ -13,8 +13,8 @@
 - (id)init {
   self = [super init];
   if (self) {
-    xpos=2;
-    ypos=2;
+    xpos=rand()%30;
+    ypos=rand()%23;
     _textureManager=[TextureManager sharedManager];
   }
   return self;
@@ -44,8 +44,8 @@
 
 - (void) moveByX:(int)dx andY:(int)dy {
   // TODO: Mapcheck will go here
-  xpos+=dx;
-  ypos+=dy;
+  xpos=(xpos+dx)%30;
+  ypos=(ypos+dy)%23;
 }
 
 - (void)dealloc {

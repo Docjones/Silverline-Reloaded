@@ -20,9 +20,7 @@
   double delta;
   double framedelta;
   
-   TextureManager *_textureManager;
   World *_world;
-  Player *_player;
   NSTimer *aTimer;
 }
 

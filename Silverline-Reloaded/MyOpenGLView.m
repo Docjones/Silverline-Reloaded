@@ -18,21 +18,16 @@
 - (id)init {
   self = [super init];
   if (self) {
-    //    _textureManager=[TextureManager sharedManager];
-    _player=[[Player alloc] init];
     _world=[[World alloc] init];
   }
   return self;
 }
 
 - (void)awakeFromNib {
-  //  _textureManager=[TextureManager sharedManager];
-  _player=[[Player alloc] init];
   _world=[[World alloc] init];
 }
 
 - (void)dealloc {
-  [_player release];
   [_world release];
 
   [super dealloc];
@@ -95,8 +90,6 @@
 
   [_world draw:rect withTimedDelta:delta];
  
-  [_player drawWithTimedDelta:delta];
-  
   glFlush();
   startTime=lastTime;
   //  [FPS setDoubleValue:1.0f/delta];
