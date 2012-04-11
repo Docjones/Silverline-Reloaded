@@ -9,15 +9,22 @@
 #import "Player.h"
 
 @implementation Player
+@synthesize _connection,name,xpos,ypos;
 
-- (id)init {
+- (id)initWithConnection:(AsyncSocket *)connection {
   self = [super init];
   if (self) {
+    _connection=[connection retain];
     xpos=rand()%30;
     ypos=rand()%23;
     _textureManager=[TextureManager sharedManager];
+    name=[[NSString stringWithFormat:@"Player%d",rand()%32768] retain];
   }
   return self;
+}
+
+- (NSString *)description {
+  return name;
 }
 
 - (void) drawWithTimedDelta:(double)d {
@@ -49,6 +56,8 @@
 }
 
 - (void)dealloc {
+  [_connection disconnect];
+  [_connection release];
   [super dealloc];
 }
 

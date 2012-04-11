@@ -21,6 +21,7 @@
   double framedelta;
   
   World *_world;
+  NSMutableArray *_players;
   NSTimer *aTimer;
 }
 

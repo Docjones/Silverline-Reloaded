@@ -19,6 +19,7 @@
   self = [super init];
   if (self) {
     _world=[[World alloc] init];
+
   }
   return self;
 }
@@ -89,6 +90,11 @@
   glClear(GL_COLOR_BUFFER_BIT);
 
   [_world draw:rect withTimedDelta:delta];
+  
+  for (Player *p in _players) {
+    [p drawWithTimedDelta:delta];
+  };
+
  
   glFlush();
   startTime=lastTime;

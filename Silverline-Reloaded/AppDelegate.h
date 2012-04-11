@@ -10,17 +10,16 @@
 #import "AsyncSocket.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
+  
   IBOutlet NSMutableArray *_players;
   IBOutlet id logView;
-  
   IBOutlet NSTableView *tableView;
   
   AsyncSocket *listenSocket;
-	NSMutableArray *connectedSockets;
 	
-  uint port;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) NSMutableArray *_players;
 
 @end
