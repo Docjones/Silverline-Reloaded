@@ -10,8 +10,10 @@
 #import "TextureManager.h"
 #import "AsyncSocket.h"
 
-@interface Player : NSObject {
+@interface Player : NSObject <AsyncSocketDelegate> {
   TextureManager *_textureManager;
+  
+  NSString *_textureName;
   AsyncSocket *_connection;
   
   NSString *name;
@@ -27,4 +29,5 @@
 
 - (id)initWithConnection:(AsyncSocket *)connection;
 - (void) drawWithTimedDelta:(double)d;
+- (NSString *) handleMessage:(NSString *)message;
 @end

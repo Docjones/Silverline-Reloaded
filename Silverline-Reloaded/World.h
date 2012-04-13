@@ -10,10 +10,15 @@
 #import "Map.h"
 #import "TextureManager.h"
 
+@class AppDelegate;
+
 @interface World : NSObject {
   Map *_map;
   TextureManager *_textureManager;
+  NSMutableArray *_players;
+  AppDelegate *_myAppDelegate;
 }
+
 
 - (void) draw:(NSRect)rect withTimedDelta:(double)d;
 @end

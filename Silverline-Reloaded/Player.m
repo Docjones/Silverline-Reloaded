@@ -7,24 +7,29 @@
 //
 
 #import "Player.h"
+#import "AsyncSocket.h"
 
 @implementation Player
+
 @synthesize _connection,name,xpos,ypos;
 
 - (id)initWithConnection:(AsyncSocket *)connection {
   self = [super init];
   if (self) {
-    _connection=[connection retain];
+    name=[[NSString stringWithFormat:@"Player%d",rand()%32768] retain];
     xpos=rand()%30;
     ypos=rand()%23;
+    _textureName=[[NSString stringWithFormat:@"c%03d",rand()%3+1] retain];
+
     _textureManager=[TextureManager sharedManager];
-    name=[[NSString stringWithFormat:@"Player%d",rand()%32768] retain];
+
+    _connection=[connection retain];
   }
   return self;
 }
 
 - (NSString *)description {
-  return name;
+  return [NSString stringWithFormat:@"%@(%d/%d),%@",name,xpos,ypos,_textureName];
 }
 
 - (void) drawWithTimedDelta:(double)d {
@@ -35,12 +40,8 @@
     16*xpos+16,16*ypos+16,
     16*xpos   ,16*ypos+16
   };
-  glActiveTexture(GL_TEXTURE1);
-  glEnable(GL_TEXTURE_2D);
-  glBindTexture(GL_TEXTURE_2D, [_textureManager textureByName:@"c003"]);
-  glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-  
- 
+  glBindTexture(GL_TEXTURE_2D, [_textureManager textureByName:_textureName]);
+
   t=[_textureManager getBlockWithNumber:12];
 
   glVertexPointer(2, GL_INT, 0, v);
@@ -48,6 +49,30 @@
   glDrawArrays(GL_QUADS, 0, 4);
       
 }
+
+////////////////////////////////////////////
+// Messagehandler
+////////////////////////////////////////////
+- (NSString *) handleMessage:(NSString *)message {
+  
+  NSLog(@"Message: %@",message);
+	NSString *ret=Nil;
+	NSArray *chunks = [message componentsSeparatedByString:@"|"];
+  
+  NSString *action=[chunks objectAtIndex:0];
+  NSString *function=[chunks objectAtIndex:1];
+  NSArray *p=[NSArray arrayWithArray:[chunks subarrayWithRange:NSMakeRange(2, [chunks count]-2)]];
+  
+  if ([action isEqualTo:@"P"]) {
+    if ([function isEqualTo:@"M"]) {
+      [self moveByX:[[p objectAtIndex:2] intValue] 
+               andY:[[p objectAtIndex:3] intValue]];
+    }
+  }
+	
+  return ret;
+}
+
 
 - (void) moveByX:(int)dx andY:(int)dy {
   // TODO: Mapcheck will go here

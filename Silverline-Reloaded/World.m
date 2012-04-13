@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "World.h"
 #import <OpenGL/gl.h>
+#import "World.h"
 
 @implementation World
 
@@ -17,6 +17,7 @@
   if (self) {
     _textureManager=[TextureManager sharedManager];
     _map=[[Map alloc] init];
+	  _myAppDelegate=(AppDelegate *)[[NSApplication sharedApplication] delegate];
   }
   return self;
 }

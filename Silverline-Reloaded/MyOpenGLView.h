@@ -21,8 +21,12 @@
   double framedelta;
   
   World *_world;
-  NSMutableArray *_players;
+  IBOutlet NSMutableArray *_players;
+  IBOutlet AppDelegate *_myAppDelegate;
   NSTimer *aTimer;
+  
 }
+
+@property (assign)IBOutlet NSMutableArray *_players;
 
 @end

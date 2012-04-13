@@ -1318,6 +1318,7 @@
 							<string key="NSFrame">{{20, 308}, {507, 440}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="241267278"/>
 							<string key="NSReuseIdentifierKey">_NS:29</string>
 							<object class="NSOpenGLPixelFormat" key="NSPixelFormat">
 								<object class="NSMutableData" key="NSPixelAttributes">
@@ -1339,7 +1340,7 @@
 											<string key="NSFrameSize">{216, 422}</string>
 											<reference key="NSSuperview" ref="995010586"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="943154923"/>
+											<reference key="NSNextKeyView" ref="164722896"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTableHeaderView" key="NSHeaderView" id="372906114">
@@ -1500,7 +1501,7 @@
 							<string key="NSFrame">{{530, 308}, {218, 440}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="995010586"/>
+							<reference key="NSNextKeyView" ref="943154923"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="164722896"/>
@@ -1542,7 +1543,7 @@
 											<string key="NSFrameSize">{726, 14}</string>
 											<reference key="NSSuperview" ref="363398318"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="359030870"/>
+											<reference key="NSNextKeyView" ref="292077480"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="477260960">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1664,7 +1665,7 @@
 							<string key="NSFrame">{{20, 20}, {728, 280}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="363398318"/>
+							<reference key="NSNextKeyView" ref="359030870"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133138</int>
 							<reference key="NSVScroller" ref="292077480"/>
@@ -2380,6 +2381,14 @@
 						<reference key="destination" ref="763494409"/>
 					</object>
 					<int key="connectionID">835</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_myAppDelegate</string>
+						<reference key="source" ref="187654330"/>
+						<reference key="destination" ref="976324537"/>
+					</object>
+					<int key="connectionID">852</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -3896,6 +3905,7 @@
 				<string key="517.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="534.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="536.CustomClassName">MyOpenGLView</string>
+				<dictionary class="NSMutableDictionary" key="536.IBAttributePlaceholdersKey"/>
 				<boolean value="NO" key="536.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="536.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3943,7 +3953,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">838</int>
+			<int key="maxID">852</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3951,16 +3961,11 @@
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_players">NSMutableArray</string>
 						<string key="logView">id</string>
 						<string key="tableView">NSTableView</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_players">
-							<string key="name">_players</string>
-							<string key="candidateClassName">NSMutableArray</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="logView">
 							<string key="name">logView</string>
 							<string key="candidateClassName">id</string>
@@ -3982,6 +3987,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MyOpenGLView</string>
 					<string key="superclassName">NSOpenGLView</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_myAppDelegate">AppDelegate</string>
+						<string key="_players">NSMutableArray</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_myAppDelegate">
+							<string key="name">_myAppDelegate</string>
+							<string key="candidateClassName">AppDelegate</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_players">
+							<string key="name">_players</string>
+							<string key="candidateClassName">NSMutableArray</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MyOpenGLView.h</string>

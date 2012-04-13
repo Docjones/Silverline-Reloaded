@@ -7,10 +7,11 @@
 //
 
 #import "MyOpenGLView.h"
+#define TARGET_FPS 25.0f
 
 @implementation MyOpenGLView
 
-#define TARGET_FPS 0.5f
+@synthesize  _players;
 
 ////////////////////////////////////////////
 // OpenGL
@@ -89,9 +90,9 @@
   
   glClear(GL_COLOR_BUFFER_BIT);
 
-  [_world draw:rect withTimedDelta:delta];
+  //[_world draw:rect withTimedDelta:delta];
   
-  for (Player *p in _players) {
+  for (Player *p in [_myAppDelegate _players]) {
     [p drawWithTimedDelta:delta];
   };
 

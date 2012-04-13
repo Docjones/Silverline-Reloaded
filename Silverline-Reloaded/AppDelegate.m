@@ -19,11 +19,24 @@
 
 #define FORMAT(format, ...) [NSString stringWithFormat:(format), ##__VA_ARGS__]
 
-
+@implementation NSMutableArray (Players)
+-(Player *)getPlayerWithSocket:(AsyncSocket *)socket {
+  for (Player *p in self) {
+    if ([[p _connection] isEqual:socket]) {
+      return p;
+    }
+  }
+  return nil;
+}
+@end
 
 @implementation AppDelegate
 
 @synthesize window = _window,_players;
+
++ (void)initialize {
+  [self exposeBinding:@"_players"];
+}
 
 - (id)init {
   self = [super init];
@@ -126,18 +139,14 @@
 	NSString *msg = [[NSString alloc] initWithData:strData encoding:NSUTF8StringEncoding];
 	if(msg)	{
 		[self logMessage:msg withColor:[NSColor whiteColor]];
+    //  [self handleMessage:msg];
+    [[_players getPlayerWithSocket:sock] handleMessage:msg];
     // Messagehandling:
     if ([msg isEqualToString:@"QUIT"]) {
       // find the player and remove him (disconnect is done upon releasing the object)
-      for (Player *p in _players) {
-        if ([[p _connection] isEqual:sock]) {
-          [_players removeObjectIdenticalTo:p];
-          break;
-        }
-      }
-      [tableView reloadData];
+      [[_players getPlayerWithSocket:sock] release];
     }
-
+    [tableView reloadData];
     
 	}	else	{
 		[self logMessage:@"Error converting received data into UTF-8 String" withColor:[NSColor redColor]];
@@ -189,6 +198,6 @@
   return [_players count];
 }
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-  return [[_players objectAtIndex:rowIndex] name];
+  return [[_players objectAtIndex:rowIndex] description];
 }
 @end
