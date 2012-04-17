@@ -8,6 +8,11 @@
 
 #import "AppDelegate.h"
 #import "AsyncSocket.h"
+
+#import "NSMutableArray+Players.h"
+#import "NSMutableArray+Accounts.h"
+
+#import "Account.h"
 #import "Player.h"
 
 #define WELCOME_MSG  0
@@ -19,29 +24,16 @@
 
 #define FORMAT(format, ...) [NSString stringWithFormat:(format), ##__VA_ARGS__]
 
-@implementation NSMutableArray (Players)
--(Player *)getPlayerWithSocket:(AsyncSocket *)socket {
-  for (Player *p in self) {
-    if ([[p _connection] isEqual:socket]) {
-      return p;
-    }
-  }
-  return nil;
-}
-@end
 
 @implementation AppDelegate
 
 @synthesize window = _window,_players;
 
-+ (void)initialize {
-  [self exposeBinding:@"_players"];
-}
-
 - (id)init {
   self = [super init];
   if (self) {
     _players=[[NSMutableArray alloc] initWithCapacity:1];
+    _accounts=[[NSMutableArray alloc] initWithCapacity:1];
 
 		listenSocket = [[AsyncSocket alloc] initWithDelegate:self];
     
@@ -138,23 +130,49 @@
 	NSData *strData = [data subdataWithRange:NSMakeRange(0, [data length] - 2)];
 	NSString *msg = [[NSString alloc] initWithData:strData encoding:NSUTF8StringEncoding];
 	if(msg)	{
-		[self logMessage:msg withColor:[NSColor whiteColor]];
-    //  [self handleMessage:msg];
-    [[_players getPlayerWithSocket:sock] handleMessage:msg];
     // Messagehandling:
-    if ([msg isEqualToString:@"QUIT"]) {
-      // find the player and remove him (disconnect is done upon releasing the object)
-      [[_players getPlayerWithSocket:sock] release];
+		[self logMessage:msg withColor:[NSColor whiteColor]];
+
+    NSArray *chunks = [msg componentsSeparatedByString:@"|"];
+    NSString *action=[chunks objectAtIndex:0];
+
+    NSString *ret;
+    if ([action isEqualToString:@"P"]) {
+      NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
+      ret=[[_players getPlayerWithSocket:sock] handleMessage:p];
     }
+    
+
+    if ([action isEqualToString:@"A"]) {
+      NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
+      ret=[_accounts handleMessage:p];
+    }
+
+    if ([action isEqualToString:@"Q"]) {
+      // Saving data objects to disk goes here
+      
+//      NSMutableData *data = [[NSMutableData alloc] init];
+//      NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//      [archiver setOutputFormat:NSPropertyListXMLFormat_v1_0];
+//      [archiver encodeObject:_accounts forKey:@"Accounts"];
+//      [archiver finishEncoding];
+//      [data writeToFile:@"/Users/marc/Accounts.plist" atomically:YES];
+//      
+//      [data release];
+//      [archiver release];
+
+      //    [NSKeyedArchiver archiveRootObject:_accounts toFile:@"/Users/marc/Accounts"];
+    }
+    
+    [sock writeData:[[ret stringByAppendingString:@"\n\r"] dataUsingEncoding:NSUTF8StringEncoding]
+        withTimeout:-1 tag:ECHO_MSG];
+    
     [tableView reloadData];
     
 	}	else	{
 		[self logMessage:@"Error converting received data into UTF-8 String" withColor:[NSColor redColor]];
 	}
 	
-	// Even if we were unable to write the incoming data to the log,
-	// we're still going to echo it back to the client.
-	[sock writeData:data withTimeout:-1 tag:ECHO_MSG];
 }
 
 /**

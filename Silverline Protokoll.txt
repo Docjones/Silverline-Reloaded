@@ -1,0 +1,189 @@
+Token Trenner ist Pipe. 
+1. Token: Applicationcode: 
+kann 
+"A" (Accountmanagement),  AccountID=1: Monster, AccountID 2+: Player
+"C" (Charactermanagement) 
+"D" (Database)
+"M" (Mapmanagement)
+"P" (Play) 
+"O" Object) 
+
+2. Token: Funktion: abhaengig von Application
+=========================================
+bei Appcode="A":
+"C": Create account, 
+P1: Accountname, P2: Email, P3: password
+Rueckmeldung:
+A|C|Success|XXXX<-ID
+Fehler:
+A|C|Error 0001: Account already exists
+
+"M": Modify account, 
+P1: Accountname(key), P2: Email, P3: password
+Rueckmeldung:
+A|M|Success|XXXX<-ID
+Fehler:
+A|M|Error 0001: Account does not exist|
+
+"D": Delete Account, 
+P1: Accountname(key), P2: Email, P3: password (key)
+Rueckmeldung:
+A|D|Success
+Fehler:
+A|D|Error 0001: Account  does not exist|
+
+"V": Verify Account, 
+P1: Accountname(key), P2: password(key)
+Rueckmeldung:
+A|V|Success|XXXX<-AID
+Fehler:
+A|V|Error 0001: Account does not exist
+A|V|Error 0002: Password wrong
+=========================================
+bei Appcode="C":
+"C": Create Character, 
+P1: AccountID(key), P2:name(key), P3:race-id, P4:sex-id, P5:profession-id, P6: body style, P7: hair style
+Rueckmeldung:
+C|C|Success|XXXX<-cID
+Fehler:
+C|C|Error 0002: Charactername already exists
+
+"D": Delete Character 
+P1: Accountname(key), P2: Charactername
+Rueckmeldung:
+C|D|Success
+Fehler:
+C|D|Error 0001: Account does not exists
+C|D|Error 0002: Character does not exists
+
+"L": List Characters 
+P1: Accountname(key)
+Rueckmeldung:
+C|L|cID|charname|raceid|genderid|profession|mapname|style_body|style_hair
+...
+C|L|0
+
+"G": Get Characters 
+P1: Accountname(key), P2: Charid
+Rueckmeldung:
+C|G|cID|charname|raceid|genderid|profession|mapname|style_body|style_hair
+...
+C|G|0
+
+"S": Sign on Character
+P1: Accountid(key), P2: Character ID(key)
+Rueckmeldung:
+C|S|name|race|gender|profession|mapid|xpos|ypos|speed|level|xp|hp|style_body|style_hair
+Fehler:
+C|S|Error 0001: Character does not exist
+C|S|Error 0002: Character already signed in
+
+"X": Exit Character
+P1: Accountid(key), P2: Character ID(key)
+Rueckmeldung:
+C|X|Success
+Fehler:
+C|X|Error 0001: Character not signed on
+
+=========================================
+bei Appcode="D":
+"G": Get Table, 
+P1: Tablename (RACE, GENDER, PROFESSION, MAPS)
+Rueckmeldung:
+1. Zeile: D|G|P1|<ROWCOUNT>|<COLCOUNT>
+2-ROWCOUNT. Zeile: D|G|P1|id1|col1|col2|...
+=========================================
+bei Appcode="M":
+"C": Create Map
+P1: Mapname, P2: XWidth, P3: YWidth
+Rueckmeldung:
+M|C|Success|XXXX<-Map ID
+Fehler:
+M|C|Error 0001: Map already exists
+
+"D": Delete Map, 
+P1: Map ID (key)
+Rueckmeldung:
+M|D|Success
+Fehler:
+M|D|Error 0001: Map does not exist
+
+"G": Get Map
+P1: Map ID (key)
+Rueckmeldung:
+M|G|<lineno>|<mapline>
+...
+M|G|0
+Fehler:
+-
+
+"I": Insert Map(line)
+P1: Map ID, P2: lineno, P3: content
+Rückmeldung:
+-
+Fehler:
+M|I|Error 0001: Map does not exist
+=========================================
+bei Appcode="P":
+"M": Move
+P1: Account ID, P2: Charid, P3: Delta X, P4: Delta Y
+Rückmeldung:
+-
+Fehler:
+
+- Kollisionsabfrage? Waende, Monster?
+
+"A": Attack
+P1: Account ID, P2: Charid, P3: direction  (0=self,1=N,2=NE,3=E,4=SE,5=S,6=SW,7=W,8=NW)
+Rückmeldung:
+-
+Fehler:
+
+"U": Char-Update (ausgehend)
+P1: charid, P2+:<HP,XP?,INT,DEX,ABI,mapid,xpos,ypos,...>:new value
+Ausgehende Meldung an Player: er wurde getroffen, neuer HP ist ...
+Es kommt fuer jedes veraenderte Feld ein eigener P2+ "Satz". Gueltig ist z.B.: "P|U|11|MAPID:2|XPOS:17|YPOS:9" und 
+bedeuted: Figur 11 hat sich auf MAPID 2, XPOS 17 und YPOS 9 bewegt". Das kann in dem Fall sowohl ein Verlassen der
+Map anzeigen (wenn die eigene MAPID!=2) oder ein Betreten der Map bedeuten (Wenn die eigene MAPID=2 ist).
+Beim Mapwechsel wird also folgende Map verschickt:
+P|U|<cid>|MAPID:m|XPOS:x|YPOS:y|RACE:r|PROFESSION:p|GENDER:g|STYLE_BODY:b|STYLE_HAIR:h
+
+"V": Vicinty (Umgebung abfragen)
+P1: Account-ID, P2: Charid
+Rückmeldung:
+-
+Fehler:
+
+"T": Teleport
+P1: Account ID, P2: Charid, P3: Mapid, P4: X, P5: Y (wenn P3=-1, random, wenn P4&P5=-1, ebenfalls random)
+Rückmeldung:
+-
+Fehler:
+
+=========================================
+bei Appcode="O":
+"G": Get Objectlist
+P1: Map ID (key)
+Rueckmeldung:
+O|G|<id>|<type>|<mapid>|<xpos>|<ypos>|<is_shown>
+...
+O|G|0
+Fehler:
+-
+<type>: TELEPORTER|CHEST|MOBGEN
+
+=========================================
+bei Appcode="T":
+"C": Tell Channel
+P1: Accountid, P2: Charid, P3: Channel id, P4: Message
+Rueckmeldung:
+-
+Fehler:
+-
+Channel id: 0=global, 1=locale map, n=personal tell an CHARID
+
+=========================================
+Bemerkungen:
+- Sicherheitsueberpruefungen wenn mgl Serverseitig wegen Hackversuchen
+
+

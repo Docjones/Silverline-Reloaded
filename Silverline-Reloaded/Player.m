@@ -28,8 +28,26 @@
   return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+  if (self) {
+    xpos=[coder decodeIntForKey:@"PlayerXpos"];
+    ypos=[coder decodeIntForKey:@"PlayerYpos"];
+    name=[coder decodeObjectForKey:@"PlayerName"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [encoder encodeInt:xpos forKey:@"PlayerXpos"];
+  [encoder encodeInt:ypos forKey:@"PlayerYpos"];
+  [encoder encodeObject:name forKey:@"PlayerName"];
+  _textureManager=[TextureManager sharedManager];
+}
+
+
 - (NSString *)description {
-  return [NSString stringWithFormat:@"%@(%d/%d),%@",name,xpos,ypos,_textureName];
+  return [NSString stringWithFormat:@"%@ (%d/%d),%@",name,xpos,ypos,_textureName];
 }
 
 - (void) drawWithTimedDelta:(double)d {
@@ -53,21 +71,14 @@
 ////////////////////////////////////////////
 // Messagehandler
 ////////////////////////////////////////////
-- (NSString *) handleMessage:(NSString *)message {
+- (NSString *) handleMessage:(NSArray *)p {
   
-  NSLog(@"Message: %@",message);
+  NSLog(@"Message: %@",p);
 	NSString *ret=Nil;
-	NSArray *chunks = [message componentsSeparatedByString:@"|"];
   
-  NSString *action=[chunks objectAtIndex:0];
-  NSString *function=[chunks objectAtIndex:1];
-  NSArray *p=[NSArray arrayWithArray:[chunks subarrayWithRange:NSMakeRange(2, [chunks count]-2)]];
-  
-  if ([action isEqualTo:@"P"]) {
-    if ([function isEqualTo:@"M"]) {
-      [self moveByX:[[p objectAtIndex:2] intValue] 
-               andY:[[p objectAtIndex:3] intValue]];
-    }
+  if ([[p objectAtIndex:0] isEqualTo:@"M"]) {
+    [self moveByX:[[p objectAtIndex:1] intValue] 
+             andY:[[p objectAtIndex:2] intValue]];
   }
 	
   return ret;

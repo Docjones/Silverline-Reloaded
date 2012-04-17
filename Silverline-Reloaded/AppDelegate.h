@@ -9,15 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "AsyncSocket.h"
 #import "MyOpenGLView.h"
+#import "NSMutableArray+Accounts.h"
+#import "NSMutableArray+Players.h"
 #import "Player.h"
-
-@interface NSMutableArray (Players)
--(Player *)getPlayerWithSocket:(AsyncSocket *)socket;
-@end
+#import "Account.h"
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
   
+  NSMutableArray *_accounts;
   NSMutableArray *_players;
 
   IBOutlet id logView;
