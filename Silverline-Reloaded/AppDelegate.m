@@ -33,7 +33,11 @@
   self = [super init];
   if (self) {
     _players=[[NSMutableArray alloc] initWithCapacity:1];
-    _accounts=[[NSMutableArray alloc] initWithCapacity:1];
+
+    _accounts = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/marc/Accounts.plist"];
+    if (_accounts==nil) {
+      _accounts=[[NSMutableArray alloc] initWithCapacity:1];
+    }
 
 		listenSocket = [[AsyncSocket alloc] initWithDelegate:self];
     
@@ -69,6 +73,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   NSLog(@"applicationDidFinishLaunching");
+  
 	// Advanced options - enable the socket to contine operations even during modal dialogs, and menu browsing
 	[listenSocket setRunLoopModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
 }
@@ -106,6 +111,8 @@
   Player *p=[[Player alloc] initWithConnection:newSocket];
 	[_players addObject:p];
   [p release];
+  
+  [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_players count]]];
   [tableView reloadData];
 }
 
@@ -151,17 +158,16 @@
     if ([action isEqualToString:@"Q"]) {
       // Saving data objects to disk goes here
       
-//      NSMutableData *data = [[NSMutableData alloc] init];
-//      NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//      [archiver setOutputFormat:NSPropertyListXMLFormat_v1_0];
-//      [archiver encodeObject:_accounts forKey:@"Accounts"];
-//      [archiver finishEncoding];
-//      [data writeToFile:@"/Users/marc/Accounts.plist" atomically:YES];
-//      
-//      [data release];
-//      [archiver release];
+      NSMutableData *data = [[NSMutableData alloc] init];
+      NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+      [archiver setOutputFormat:NSPropertyListXMLFormat_v1_0];
+      [archiver encodeObject:_accounts forKey:@"Accounts"];
+      [archiver finishEncoding];
+      [data writeToFile:@"/Users/marc/Accounts.plist" atomically:YES];
+      
+      [data release];
+      [archiver release];
 
-      //    [NSKeyedArchiver archiveRootObject:_accounts toFile:@"/Users/marc/Accounts"];
     }
     
     [sock writeData:[[ret stringByAppendingString:@"\n\r"] dataUsingEncoding:NSUTF8StringEncoding]
@@ -201,6 +207,7 @@
   for (Player *p in _players) {
     if ([[p _connection] isEqual:sock]) {
       [_players removeObjectIdenticalTo:p];
+      [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_players count]]];
       break;
     }
   }

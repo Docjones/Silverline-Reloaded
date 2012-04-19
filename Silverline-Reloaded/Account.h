@@ -16,9 +16,10 @@
   NSMutableArray *_toons;
 }
 
-@property (assign) NSString *_name;
-@property (assign) NSString *_email;
-@property (assign) NSString *_password;
+@property (retain) NSString *_name;
+@property (retain) NSString *_email;
+@property (retain) NSString *_password;
+@property (retain) NSMutableArray *_toons;
 
 // A|C
 - (id)initWithName:(NSString *)name 

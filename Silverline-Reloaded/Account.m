@@ -9,7 +9,7 @@
 #import "Account.h"
 
 @implementation Account
-@synthesize _name,_password,_email;
+@synthesize _name,_password,_email,_toons;
 
 // Init/deinit
 // A|C
@@ -18,10 +18,10 @@
        andPassword:(NSString *)password {
   self = [super init];
   if (self) {
-    _name=name;
-    _password=password;
-    _email=email;
-    _toons=[[NSMutableArray alloc] init];
+    [self set_name:name];
+    [self set_email:email];
+    [self set_password:password];
+    [self set_toons:[[NSMutableArray alloc] init]];
   }
   return self;
 }
@@ -34,15 +34,18 @@
   [super dealloc];
 }
 
+-(NSString *)description {
+  return [NSString stringWithFormat:@"%@, %@, %@",self._name,self._password,self._email];
+}
 
 //NSCoding protocol
 - (id)initWithCoder:(NSCoder *)coder {
   self=[super init];
   if (self) {
-    _name=[[coder decodeObjectForKey:@"AccountName"] retain];
-    _password=[[coder decodeObjectForKey:@"AccountPassword"] retain];
-    _email=[[coder decodeObjectForKey:@"AccountEmail"] retain];
-    _toons=[[coder decodeObjectForKey:@"AccountToons"] retain]	;
+    self._name=[[coder decodeObjectForKey:@"AccountName"] retain];
+    self._password=[[coder decodeObjectForKey:@"AccountPassword"] retain];
+    self._email=[[coder decodeObjectForKey:@"AccountEmail"] retain];
+    //    _toons=[[coder decodeObjectForKey:@"AccountToons"] retain]	;
   }
   return self;
 }

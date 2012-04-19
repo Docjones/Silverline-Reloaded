@@ -24,6 +24,10 @@
     _textureManager=[TextureManager sharedManager];
 
     _connection=[connection retain];
+    if ([_connection canSafelySetDelegate]) {
+      [_connection setDelegate:self];
+    }
+        
   }
   return self;
 }
@@ -68,6 +72,58 @@
       
 }
 
+
+
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
+
+}
+
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+	NSData *strData = [data subdataWithRange:NSMakeRange(0, [data length] - 2)];
+	NSString *msg = [[NSString alloc] initWithData:strData encoding:NSUTF8StringEncoding];
+	if(msg)	{
+    // Messagehandling:
+    
+    NSArray *chunks = [msg componentsSeparatedByString:@"|"];
+    NSString *action=[chunks objectAtIndex:0];
+    
+    NSString *ret;
+    if ([action isEqualToString:@"P"]) {
+      NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
+      ret=[self handleMessage:p];
+    }
+    
+    [sock writeData:[[ret stringByAppendingString:@"\n\r"] dataUsingEncoding:NSUTF8StringEncoding]
+        withTimeout:-1 tag:0];
+    
+	}	
+}
+
+/**
+ * This method is called if a read has timed out.
+ * It allows us to optionally extend the timeout.
+ * We use this method to issue a warning to the user prior to disconnecting them.
+ **/
+- (NSTimeInterval)onSocket:(AsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag elapsed:(NSTimeInterval)elapsed bytesDone:(NSUInteger)length {
+	if(elapsed <= 15.0)	{
+		NSString *warningMsg = @"Are you still there?\r\n";
+		NSData *warningData = [warningMsg dataUsingEncoding:NSUTF8StringEncoding];
+		
+		[sock writeData:warningData withTimeout:-1 tag:0];
+		
+		return 10;
+	}
+	
+	return 0.0;
+}
+
+- (void)onSocket:(AsyncSocket*) sock willDisconnectWithError:(NSError *)err {
+
+}
+
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock {
+}
+
 ////////////////////////////////////////////
 // Messagehandler
 ////////////////////////////////////////////
@@ -81,7 +137,7 @@
              andY:[[p objectAtIndex:2] intValue]];
   }
 	
-  return ret;
+  return @"OK";
 }
 
 
