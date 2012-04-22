@@ -9,7 +9,7 @@
 #import "Account.h"
 
 @implementation Account
-@synthesize _name,_password,_email,_toons;
+@synthesize _name,_password,_email,_toons,index;
 
 // Init/deinit
 // A|C

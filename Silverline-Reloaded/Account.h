@@ -14,12 +14,15 @@
   NSString *_password;
 
   NSMutableArray *_toons;
+  
+  NSUInteger index;
 }
 
 @property (retain) NSString *_name;
 @property (retain) NSString *_email;
 @property (retain) NSString *_password;
 @property (retain) NSMutableArray *_toons;
+@property (assign) NSUInteger index;
 
 // A|C
 - (id)initWithName:(NSString *)name 

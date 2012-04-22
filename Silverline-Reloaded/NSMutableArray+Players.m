@@ -20,8 +20,9 @@
 }
 
 -(void) addPlayer:(Player *)p {
-  [p setContainer:self];
   [self addObject:p];
+  [p setIndex:[self indexOfObject:p]];
+  [p setContainer:self];
 }
 
 -(void)sendMessage:(NSString*)message fromSender:(Player*)p {

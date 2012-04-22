@@ -11,7 +11,7 @@
 
 @implementation Player
 
-@synthesize _connection,name,xpos,ypos,container;
+@synthesize _connection,name,xpos,ypos,container,index;
 
 - (id)initWithConnection:(AsyncSocket *)connection {
   self = [super init];

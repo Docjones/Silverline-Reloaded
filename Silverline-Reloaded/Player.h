@@ -16,6 +16,7 @@
   NSString *_textureName;
   AsyncSocket *_connection;
   NSMutableArray *container;
+  NSUInteger index;
 
   NSString *name;
   int xpos;
@@ -25,7 +26,10 @@
 
 @property (assign) AsyncSocket *_connection;
 @property (assign) NSString *name;
+
 @property (assign) NSMutableArray *container;
+@property (assign) NSUInteger index;
+
 @property (assign) int xpos;
 @property (assign) int ypos;
 

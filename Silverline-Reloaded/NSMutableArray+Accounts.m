@@ -69,6 +69,7 @@
                          andEmail:email
                       andPassword:password];
   [self addObject:a];
+  [a setIndex:[self indexOfObject:a]];
   [a release];
   return @"A|C|Success";
 }
