@@ -11,7 +11,7 @@
 
 @implementation Player
 
-@synthesize _connection,name,xpos,ypos;
+@synthesize _connection,name,xpos,ypos,container;
 
 - (id)initWithConnection:(AsyncSocket *)connection {
   self = [super init];
@@ -72,9 +72,17 @@
       
 }
 
+-(void)sendMessage:(NSString *)message {
+  [_connection writeData:[[message stringByAppendingString:@"\n\r"]
+                          dataUsingEncoding:NSUTF8StringEncoding]
+             withTimeout:-1 
+                     tag:0];
+
+}
 
 
 - (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
+  
 
 }
 

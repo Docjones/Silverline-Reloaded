@@ -15,7 +15,8 @@
   
   NSString *_textureName;
   AsyncSocket *_connection;
-  
+  NSMutableArray *container;
+
   NSString *name;
   int xpos;
   int ypos;
@@ -24,10 +25,13 @@
 
 @property (assign) AsyncSocket *_connection;
 @property (assign) NSString *name;
+@property (assign) NSMutableArray *container;
 @property (assign) int xpos;
 @property (assign) int ypos;
 
 - (id)initWithConnection:(AsyncSocket *)connection;
 - (void) drawWithTimedDelta:(double)d;
 - (NSString *) handleMessage:(NSArray *)p;
+-(void)sendMessage:(NSString *)message;
+
 @end

@@ -122,7 +122,7 @@
   NSString *welcomeMsg = @"Welcome to the Silverline-Server\r\n";
 	NSData *welcomeData = [welcomeMsg dataUsingEncoding:NSUTF8StringEncoding];
 	
-	[sock writeData:welcomeData withTimeout:-1 tag:WELCOME_MSG];
+	[sock writeData:welcomeData withTimeout:-1 tag:0];
 	
 	[sock readDataToData:[AsyncSocket CRLFData] withTimeout:READ_TIMEOUT tag:0];
 }

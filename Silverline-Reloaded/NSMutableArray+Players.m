@@ -18,4 +18,17 @@
   }
   return nil;
 }
+
+-(void) addPlayer:(Player *)p {
+  [p setContainer:self];
+  [self addObject:p];
+}
+
+-(void)sendMessage:(NSString*)message fromSender:(Player*)p {
+  for (Player *p1 in self) {
+    if (![p1 isEqual:p]) {
+      [p1 sendMessage:message];
+    }
+  }
+}
 @end
