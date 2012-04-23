@@ -63,13 +63,6 @@ C|L|cID|charname|raceid|genderid|profession|mapname|style_body|style_hair
 ...
 C|L|0
 
-"G": Get Characters 
-P1: Accountname(key), P2: Charid
-Rueckmeldung:
-C|G|cID|charname|raceid|genderid|profession|mapname|style_body|style_hair
-...
-C|G|0
-
 "S": Sign on Character
 P1: Accountid(key), P2: Character ID(key)
 Rueckmeldung:

@@ -9,30 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "TextureManager.h"
 #import "AsyncSocket.h"
+#import "Character.h"
 
-@interface Player : NSObject <AsyncSocketDelegate, NSCoding> {
+@interface Player : Character <AsyncSocketDelegate, NSCoding> {
   TextureManager *_textureManager;
-  
   NSString *_textureName;
+  
   AsyncSocket *_connection;
-  NSMutableArray *container;
-  NSUInteger index;
-
-  NSString *name;
-  int xpos;
-  int ypos;
   
 }
 
 @property (assign) AsyncSocket *_connection;
-@property (assign) NSString *name;
 
-@property (assign) NSMutableArray *container;
-@property (assign) NSUInteger index;
-
-@property (assign) int xpos;
-@property (assign) int ypos;
-
+-(id)initFromCharacter:(Character*)c withSocket:(AsyncSocket *)socket;
 - (id)initWithConnection:(AsyncSocket *)connection;
 - (void) drawWithTimedDelta:(double)d;
 - (NSString *) handleMessage:(NSArray *)p;

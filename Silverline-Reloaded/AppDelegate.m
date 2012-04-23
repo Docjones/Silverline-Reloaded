@@ -108,22 +108,23 @@
 - (void)onSocket:(AsyncSocket *)sock didAcceptNewSocket:(AsyncSocket *)newSocket {
 	[self logMessage:@"Incoming Client" withColor:[NSColor greenColor]];
 
-  Player *p=[[Player alloc] initWithConnection:newSocket];
-	[_players addObject:p];
-  [p release];
+  // 
+//  Player *p=[[Player alloc] initWithConnection:newSocket];
+//	[_players addObject:p];
+//  [p release];
   
   [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_players count]]];
   [tableView reloadData];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)p {
-	[self logMessage:FORMAT(@"Accepted client %@:%hu", host, p) withColor:[NSColor greenColor]];
+	[self logMessage:FORMAT(@"Accepted client in AppDelegate %@:%hu", host, p) withColor:[NSColor greenColor]];
   
-  NSString *welcomeMsg = @"Welcome to the Silverline-Server\r\n";
-	NSData *welcomeData = [welcomeMsg dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[sock writeData:welcomeData withTimeout:-1 tag:0];
-	
+//  NSString *welcomeMsg = @"Welcome to the Silverline-Server\r\n";
+//	NSData *welcomeData = [welcomeMsg dataUsingEncoding:NSUTF8StringEncoding];
+//	
+//	[sock writeData:welcomeData withTimeout:-1 tag:0];
+    
 	[sock readDataToData:[AsyncSocket CRLFData] withTimeout:READ_TIMEOUT tag:0];
 }
 
@@ -141,21 +142,26 @@
 		[self logMessage:msg withColor:[NSColor whiteColor]];
 
     NSArray *chunks = [msg componentsSeparatedByString:@"|"];
-    NSString *action=[chunks objectAtIndex:0];
+    NSString *appcode=[chunks objectAtIndex:0];
 
     NSString *ret;
-    if ([action isEqualToString:@"P"]) {
-      NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
-      ret=[[_players getPlayerWithSocket:sock] handleMessage:p];
-    }
+//    if ([action isEqualToString:@"P"]) {
+//      NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
+//      ret=[[_players getPlayerWithSocket:sock] handleMessage:p];
+//    }
     
 
-    if ([action isEqualToString:@"A"]) {
+    if ([appcode isEqualToString:@"A"]) {
       NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
-      ret=[_accounts handleMessage:p];
+      ret=[_accounts handleMessage:p withSocket:sock];
     }
 
-    if ([action isEqualToString:@"Q"]) {
+    if ([appcode isEqualToString:@"C"]) {
+      NSArray *p=[chunks subarrayWithRange:NSMakeRange(1, [chunks count]-1)];
+      ret=[_accounts handleMessage:p withSocket:sock];
+    }
+
+    if ([appcode isEqualToString:@"Q"]) {
       // Saving data objects to disk goes here
       
       NSMutableData *data = [[NSMutableData alloc] init];

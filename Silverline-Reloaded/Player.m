@@ -6,16 +6,41 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "Character.h"
 #import "Player.h"
 #import "AsyncSocket.h"
 
+#define READ_TIMEOUT 15.0
+
+
 @implementation Player
 
-@synthesize _connection,name,xpos,ypos,container,index;
+@synthesize _connection;
+
+-(id)initFromCharacter:(Character *)c withSocket:(AsyncSocket*)socket {
+  self = [super init];
+  if (self) {
+    name=[c name];
+    xpos=[c xpos];
+    ypos=[c ypos];
+    
+    _textureName=[[NSString stringWithFormat:@"c%03d",rand()%3+1] retain];
+    _textureManager=[TextureManager sharedManager];
+    
+    _connection=[socket retain];
+    if ([_connection canSafelySetDelegate]) {
+      NSLog(@"Delegate set...");
+      [_connection setDelegate:self];
+    }
+    
+  }
+  return self;
+}
 
 - (id)initWithConnection:(AsyncSocket *)connection {
   self = [super init];
   if (self) {
+    NSLog(@"Initializing Player object...");
     name=[[NSString stringWithFormat:@"Player%d",rand()%32768] retain];
     xpos=rand()%30;
     ypos=rand()%23;
@@ -25,6 +50,7 @@
 
     _connection=[connection retain];
     if ([_connection canSafelySetDelegate]) {
+      NSLog(@"Delegate set...");
       [_connection setDelegate:self];
     }
         
@@ -81,9 +107,13 @@
 }
 
 
-- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
-  
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)p {
+	NSLog(@"Accepted client in Player %@:%hu", host, p);
+	[sock readDataToData:[AsyncSocket CRLFData] withTimeout:READ_TIMEOUT tag:0];
+}
 
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
+	[sock readDataToData:[AsyncSocket CRLFData] withTimeout:READ_TIMEOUT tag:0];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
@@ -91,6 +121,7 @@
 	NSString *msg = [[NSString alloc] initWithData:strData encoding:NSUTF8StringEncoding];
 	if(msg)	{
     // Messagehandling:
+    NSLog(@"Message in Player: %@",msg);
     
     NSArray *chunks = [msg componentsSeparatedByString:@"|"];
     NSString *action=[chunks objectAtIndex:0];
@@ -130,6 +161,8 @@
 }
 
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock {
+  [container removeObject:self];
+  [self release];
 }
 
 ////////////////////////////////////////////
@@ -137,7 +170,6 @@
 ////////////////////////////////////////////
 - (NSString *) handleMessage:(NSArray *)p {
   
-  NSLog(@"Message: %@",p);
 	NSString *ret=Nil;
   
   if ([[p objectAtIndex:0] isEqualTo:@"M"]) {
@@ -151,8 +183,14 @@
 
 - (void) moveByX:(int)dx andY:(int)dy {
   // TODO: Mapcheck will go here
+  [self willChangeValueForKey:@"xpos"];
+  [self willChangeValueForKey:@"ypos"];
+  
   xpos=(xpos+dx)%30;
   ypos=(ypos+dy)%23;
+  
+  [self didChangeValueForKey:@"xpos"];
+  [self didChangeValueForKey:@"ypos"];
 }
 
 - (void)dealloc {

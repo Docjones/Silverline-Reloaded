@@ -9,32 +9,32 @@
 #import <Foundation/Foundation.h>
 
 @interface Account : NSObject <NSCoding> {
-  NSString *_name;
-  NSString *_email;
-  NSString *_password;
+  NSString *name;
+  NSString *email;
+  NSString *password;
 
-  NSMutableArray *_toons;
+  NSMutableArray *characters;
   
   NSUInteger index;
 }
 
-@property (retain) NSString *_name;
-@property (retain) NSString *_email;
-@property (retain) NSString *_password;
-@property (retain) NSMutableArray *_toons;
+@property (retain) NSString *name;
+@property (retain) NSString *email;
+@property (retain) NSString *password;
+@property (retain) NSMutableArray *characters;
 @property (assign) NSUInteger index;
 
 // A|C
-- (id)initWithName:(NSString *)name 
-          andEmail:(NSString *)email
-       andPassword:(NSString *)password;
+- (id)initWithName:(NSString *)n
+          andEmail:(NSString *)e
+       andPassword:(NSString *)p;
 // A|M
-- (BOOL)modifyAccountSetEmail:(NSString *)email
-                  andPassword:(NSString *)password;
+- (BOOL)modifyAccountSetEmail:(NSString *)e
+                  andPassword:(NSString *)p;
 // A|D
-- (BOOL)canDeleteAccountWithPassword:(NSString *)password;
+- (BOOL)canDeleteAccountWithPassword:(NSString *)p;
 // A|V
--(BOOL) verifyAccountWithPassword:(NSString *)password;
+-(BOOL) verifyAccountWithPassword:(NSString *)p;
 
 
 @end

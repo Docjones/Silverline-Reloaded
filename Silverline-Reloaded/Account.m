@@ -9,75 +9,75 @@
 #import "Account.h"
 
 @implementation Account
-@synthesize _name,_password,_email,_toons,index;
+@synthesize name,password,email,characters,index;
 
 // Init/deinit
 // A|C
-- (id)initWithName:(NSString *)name 
-          andEmail:(NSString *)email 
-       andPassword:(NSString *)password {
+- (id)initWithName:(NSString *)n 
+          andEmail:(NSString *)e 
+       andPassword:(NSString *)p {
   self = [super init];
   if (self) {
-    [self set_name:name];
-    [self set_email:email];
-    [self set_password:password];
-    [self set_toons:[[NSMutableArray alloc] init]];
+    [self setName:n];
+    [self setEmail:e];
+    [self setPassword:p];
+    [self setCharacters:[[NSMutableArray alloc] init]];
   }
   return self;
 }
 
 - (void)dealloc {
-  [_name release];
-  [_password release];
-  [_email release];
-  [_toons release]; 
+  [name release];
+  [password release];
+  [email release];
+  [characters release]; 
   [super dealloc];
 }
 
 -(NSString *)description {
-  return [NSString stringWithFormat:@"%@, %@, %@",self._name,self._password,self._email];
+  return [NSString stringWithFormat:@"%@, %@, %@",self.name,self.password,self.email];
 }
 
 //NSCoding protocol
 - (id)initWithCoder:(NSCoder *)coder {
   self=[super init];
   if (self) {
-    self._name=[[coder decodeObjectForKey:@"AccountName"] retain];
-    self._password=[[coder decodeObjectForKey:@"AccountPassword"] retain];
-    self._email=[[coder decodeObjectForKey:@"AccountEmail"] retain];
-    //    _toons=[[coder decodeObjectForKey:@"AccountToons"] retain]	;
+    name=[[coder decodeObjectForKey:@"AccountName"] retain];
+    password=[[coder decodeObjectForKey:@"AccountPassword"] retain];
+    email=[[coder decodeObjectForKey:@"AccountEmail"] retain];
+    characters=[[coder decodeObjectForKey:@"AccountCharacters"] retain]	;
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-  [encoder encodeObject:_name forKey:@"AccountName"];
-  [encoder encodeObject:_password forKey:@"AccountPassword"];
-  [encoder encodeObject:_email forKey:@"AccountEmail"];
-  // [encoder encodeObject:_toons forKey:@"AccountToons"];
+  [encoder encodeObject:name forKey:@"AccountName"];
+  [encoder encodeObject:password forKey:@"AccountPassword"];
+  [encoder encodeObject:email forKey:@"AccountEmail"];
+  [encoder encodeObject:characters forKey:@"AccountCharacters"];
 }
 
 
 // Methods
 // A|M
-- (BOOL)modifyAccountSetEmail:(NSString *)email
-                  andPassword:(NSString *)password {
-  [self set_password:password];
-  [self set_email:email];
+- (BOOL)modifyAccountSetEmail:(NSString *)e
+                  andPassword:(NSString *)p {
+  [self setPassword:p];
+  [self setEmail:e];
   return YES;
 }
 
 // A|D
-- (BOOL)canDeleteAccountWithPassword:(NSString *)password {
-  if ([[self _password] isEqualToString:password]) {
+- (BOOL)canDeleteAccountWithPassword:(NSString *)p {
+  if ([[self password] isEqualToString:p]) {
     return YES;
   }
   return NO;
 }
 
 // A|V
--(BOOL) verifyAccountWithPassword:(NSString *)password {
-  if ([[self _password] isEqualToString:password]) {
+-(BOOL) verifyAccountWithPassword:(NSString *)p {
+  if ([[self password] isEqualToString:p]) {
     return YES;
   } 
   return NO;

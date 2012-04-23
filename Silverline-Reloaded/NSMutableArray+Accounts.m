@@ -5,6 +5,7 @@
 //  Created by Marc Rink on 17.04.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#import "AsyncSocket.h"
 
 #import "NSMutableArray+Accounts.h"
 #import "Account.h"
@@ -12,7 +13,7 @@
 @implementation NSMutableArray (Accounts)
 -(Account *)getAccountWithName:(NSString *)name andPassword:(NSString *)password {
   Account *a=[self getAccountWithName:name];
-  if ([[a _password] isEqualToString:password]) {
+  if ([[a password] isEqualToString:password]) {
     return a;
   }
   return nil;
@@ -20,7 +21,7 @@
 
 -(Account *)getAccountWithName:(NSString *)name {
   for (Account *a in self) {
-    if ([[a _name] isEqualToString:name]) {
+    if ([[a name] isEqualToString:name]) {
       return a;
     }
   }
@@ -30,7 +31,7 @@
 ////////////////////////////////////////////
 // Messagehandler
 ////////////////////////////////////////////
--(NSString *)handleMessage:(NSArray *)p {
+-(NSString *)handleMessage:(NSArray *)p withSocket:(AsyncSocket*)socket {
   
   NSLog(@"Account Message: %@",p);
   
@@ -69,9 +70,10 @@
                          andEmail:email
                       andPassword:password];
   [self addObject:a];
-  [a setIndex:[self indexOfObject:a]];
+  NSUInteger i=[self indexOfObject:a];
+  [a setIndex:i];
   [a release];
-  return @"A|C|Success";
+  return [NSString stringWithFormat:@"A|C|Success|%d",i];
 }
 
 // A|M
@@ -80,8 +82,9 @@
                        andPassword:(NSString *)password {
   Account *a=[self getAccountWithName:name];
   if ([a modifyAccountSetEmail:email andPassword:password]) {
+    NSUInteger i=[a index];
     [a release];
-    return @"A|M|Success";
+    return [NSString stringWithFormat:@"A|M|Success|%d",i];
   }
   [a release];
   return @"A|M|Error 0001: Account does not exist";
@@ -106,8 +109,9 @@
   Account *a=[self getAccountWithName:name];
   if (a) {
     if ([a verifyAccountWithPassword:password]) {
+      NSUInteger i=[a index];
       [a release];
-      return @"A|V|Success";
+      return [NSString stringWithFormat:@"A|C|Success|%d",i];
     } else {
       [a release];
       return @"A|V|Error 0002: Password wrong";

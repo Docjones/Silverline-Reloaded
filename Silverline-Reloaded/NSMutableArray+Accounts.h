@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AsyncSocket.h"
+
 #import "Account.h"
 
 @interface NSMutableArray (Accounts)
 -(Account *)getAccountWithName:(NSString *)name andPassword:(NSString *)password;
 -(Account *)getAccountWithName:(NSString *)name;
--(NSString *)handleMessage:(NSArray *)p;
+-(NSString *)handleMessage:(NSArray *)p withSocket:(AsyncSocket*)socket ;
 @end
 
