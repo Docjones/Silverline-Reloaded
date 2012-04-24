@@ -9,11 +9,11 @@
 #import "AppDelegate.h"
 #import "AsyncSocket.h"
 
-#import "NSMutableArray+Players.h"
 #import "NSMutableArray+Accounts.h"
+#import "NSMutableArray+Characters.h"
 
 #import "Account.h"
-#import "Player.h"
+#import "Character.h"
 
 #define WELCOME_MSG  0
 #define ECHO_MSG     1
@@ -27,12 +27,12 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window,_players;
+@synthesize window = _window,_characters;
 
 - (id)init {
   self = [super init];
   if (self) {
-    _players=[[NSMutableArray alloc] initWithCapacity:1];
+    _characters=[[NSMutableArray alloc] init];
 
     _accounts = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/Users/marc/Accounts.plist"];
     if (_accounts==nil) {
@@ -59,8 +59,8 @@
   // By removing the Player objects, their dealloc message is performing a disconnect on the socket.
   // which will invoke the socketDidDisconnect: method,
   // which will remove the socket from the list.
-  [_players removeAllObjects];
-  [_players release];
+  [_characters removeAllObjects];
+  [_characters release];
   
   [self logMessage:@"Stopped Server" withColor:[NSColor greenColor]];
   [super dealloc];
@@ -113,7 +113,7 @@
 //	[_players addObject:p];
 //  [p release];
   
-  [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_players count]]];
+  [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_characters count]]];
   [tableView reloadData];
 }
 
@@ -210,10 +210,10 @@
 }
 
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock {
-  for (Player *p in _players) {
-    if ([[p _connection] isEqual:sock]) {
-      [_players removeObjectIdenticalTo:p];
-      [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_players count]]];
+  for (Character *c in _characters) {
+    if ([[c connection] isEqual:sock]) {
+      [_characters removeObjectIdenticalTo:c];
+      [[[NSApplication sharedApplication] dockTile] setBadgeLabel:[NSString stringWithFormat:@"%lu",[_characters count]]];
       break;
     }
   }
@@ -226,9 +226,9 @@
 /////////////////////////////////////
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
-  return [_players count];
+  return [_characters count];
 }
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-  return [[_players objectAtIndex:rowIndex] description];
+  return [[_characters objectAtIndex:rowIndex] description];
 }
 @end

@@ -19,7 +19,7 @@
   
 }
 
-@property (assign) AsyncSocket *_connection;
+@property (assign) AsyncSocket *connection;
 
 -(id)initFromCharacter:(Character*)c withSocket:(AsyncSocket *)socket;
 - (id)initWithConnection:(AsyncSocket *)connection;

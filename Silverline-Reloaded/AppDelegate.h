@@ -10,15 +10,15 @@
 #import "AsyncSocket.h"
 #import "MyOpenGLView.h"
 #import "NSMutableArray+Accounts.h"
-#import "NSMutableArray+Players.h"
-#import "Player.h"
+#import "NSMutableArray+Characters.h"
+#import "Character.h"
 #import "Account.h"
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
   
   NSMutableArray *_accounts;
-  NSMutableArray *_players;
+  NSMutableArray *_characters;
 
   IBOutlet id logView;
   IBOutlet NSTableView *tableView;
@@ -28,6 +28,6 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
-@property (readonly) NSMutableArray *_players;
+@property (readonly) NSMutableArray *_characters;
 
 @end

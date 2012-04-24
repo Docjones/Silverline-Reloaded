@@ -11,7 +11,7 @@
 #import <OpenGL/glu.h>
 #import "TextureManager.h"
 #import "World.h"
-#import "Player.h"
+#import "Character.h"
 
 @interface MyOpenGLView : NSOpenGLView   {
   // OpenGL
@@ -21,12 +21,12 @@
   double framedelta;
   
   World *_world;
-  IBOutlet NSMutableArray *_players;
+  IBOutlet NSMutableArray *_characters;
   IBOutlet AppDelegate *_myAppDelegate;
   NSTimer *aTimer;
   
 }
 
-@property (assign)IBOutlet NSMutableArray *_players;
+@property (assign)IBOutlet NSMutableArray *_characters;
 
 @end

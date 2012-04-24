@@ -8,7 +8,6 @@
 
 #import "NSMutableArray+Characters.h"
 #import "Character.h"
-#import "Player.h"
 
 @implementation NSMutableArray (Characters)
 
@@ -19,6 +18,9 @@
     }
   }
   return nil;
+}
+-(Character *)getCharacterWithIndex:(NSUInteger)i {
+  return [self objectAtIndex:i];
 }
 ////////////////////////////////////////////
 // Messagehandler
@@ -82,14 +84,30 @@
 // C|S
 -(NSString *)signOnCharacter:(NSString *)i forSocket:(AsyncSocket*)socket {
   int idx=[i intValue];
-  Player *p=[[Player alloc] initFromCharacter:[self objectAtIndex:idx] withSocket:socket];
-  
+  Character *c=[self getCharacterWithIndex:idx];
+  if (c) {
+    if ([c playing]==YES) {
+      return @"C|S|Error 0002: Character already signed in";
+    } else {
+      [c setConnection:socket andDelegate:self];
+      return [c show];
+    }
+  } else {
+      return @"C|S|Error 0001: Character does not exist";
+  }
 }
 
 // C|X
 -(NSString *)signOffCharacter:(NSString *)i {
   int idx=[i intValue];
-  
+  Character *c=[self getCharacterWithIndex:idx];
+  if ([c playing]==NO) {
+    return @"C|X|Error 0001: Character not signed on";
+  } else {
+    [c setPlaying:NO];
+    [[c connection] disconnect];
+    return @"C|X|Success|r|n";
+  }
   
 }
 @end

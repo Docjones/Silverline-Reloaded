@@ -11,7 +11,7 @@
 
 @implementation MyOpenGLView
 
-@synthesize  _players;
+@synthesize  _characters;
 
 ////////////////////////////////////////////
 // OpenGL
@@ -92,8 +92,8 @@
 
   //[_world draw:rect withTimedDelta:delta];
   
-  for (Player *p in [_myAppDelegate _players]) {
-    [p drawWithTimedDelta:delta];
+  for (Character *c in [_myAppDelegate _characters]) {
+    [c drawWithTimedDelta:delta];
   };
 
  

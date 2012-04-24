@@ -15,7 +15,7 @@
 
 @implementation Player
 
-@synthesize _connection;
+@synthesize connection;
 
 -(id)initFromCharacter:(Character *)c withSocket:(AsyncSocket*)socket {
   self = [super init];

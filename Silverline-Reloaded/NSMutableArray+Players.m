@@ -12,7 +12,7 @@
 @implementation NSMutableArray (Players)
 -(Player *)getPlayerWithSocket:(AsyncSocket *)socket {
   for (Player *p in self) {
-    if ([[p _connection] isEqual:socket]) {
+    if ([[p _connection isEqual:socket]) {
       return p;
     }
   }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4904C73D152C63C60077D5AD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4904C73C152C63C60077D5AD /* Security.framework */; };
 		4904C744152CBDAF0077D5AD /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904C743152CBDAF0077D5AD /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4961B30E153DF8B800B875C8 /* NSMutableArray+Players.m in Sources */ = {isa = PBXBuildFile; fileRef = 4961B30D153DF8B800B875C8 /* NSMutableArray+Players.m */; };
 		4961B311153DF91000B875C8 /* NSMutableArray+Accounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 4961B310153DF91000B875C8 /* NSMutableArray+Accounts.m */; };
 		498270741545F0A0001FBEC5 /* NSMutableArray+Characters.m in Sources */ = {isa = PBXBuildFile; fileRef = 498270731545F0A0001FBEC5 /* NSMutableArray+Characters.m */; };
 		498270771545F1DB001FBEC5 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 498270761545F1DB001FBEC5 /* Character.m */; };
@@ -32,15 +31,12 @@
 		49B0FD0B1524E875000E5A0F /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FD0A1524E875000E5A0F /* World.m */; };
 		49B0FD0E1524E91A000E5A0F /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FD0D1524E91A000E5A0F /* Map.m */; };
 		49B0FD101524F398000E5A0F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B0FD0F1524F397000E5A0F /* OpenGL.framework */; };
-		49B0FD131524F771000E5A0F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FD121524F771000E5A0F /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4904C73C152C63C60077D5AD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4904C742152CBDAE0077D5AD /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		4904C743152CBDAF0077D5AD /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
-		4961B30C153DF8B800B875C8 /* NSMutableArray+Players.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Players.h"; sourceTree = "<group>"; };
-		4961B30D153DF8B800B875C8 /* NSMutableArray+Players.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Players.m"; sourceTree = "<group>"; };
 		4961B30F153DF91000B875C8 /* NSMutableArray+Accounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Accounts.h"; sourceTree = "<group>"; };
 		4961B310153DF91000B875C8 /* NSMutableArray+Accounts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Accounts.m"; sourceTree = "<group>"; };
 		4971802115285ADE00AC95A4 /* Messages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
@@ -81,8 +77,6 @@
 		49B0FD0C1524E91A000E5A0F /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		49B0FD0D1524E91A000E5A0F /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		49B0FD0F1524F397000E5A0F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		49B0FD111524F771000E5A0F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		49B0FD121524F771000E5A0F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +96,6 @@
 		4961B30A153DF89300B875C8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4961B30C153DF8B800B875C8 /* NSMutableArray+Players.h */,
-				4961B30D153DF8B800B875C8 /* NSMutableArray+Players.m */,
 				4961B30F153DF91000B875C8 /* NSMutableArray+Accounts.h */,
 				4961B310153DF91000B875C8 /* NSMutableArray+Accounts.m */,
 				498270721545F0A0001FBEC5 /* NSMutableArray+Characters.h */,
@@ -230,8 +222,6 @@
 				49B0FD0D1524E91A000E5A0F /* Map.m */,
 				49B0FD091524E875000E5A0F /* World.h */,
 				49B0FD0A1524E875000E5A0F /* World.m */,
-				49B0FD111524F771000E5A0F /* Player.h */,
-				49B0FD121524F771000E5A0F /* Player.m */,
 				4995835B153B022B001E4719 /* Account.h */,
 				4995835C153B022B001E4719 /* Account.m */,
 				498270751545F1DB001FBEC5 /* Character.h */,
@@ -316,10 +306,8 @@
 				49B0FCFD1524E676000E5A0F /* MyOpenGLView.m in Sources */,
 				49B0FD0B1524E875000E5A0F /* World.m in Sources */,
 				49B0FD0E1524E91A000E5A0F /* Map.m in Sources */,
-				49B0FD131524F771000E5A0F /* Player.m in Sources */,
 				4904C744152CBDAF0077D5AD /* AsyncSocket.m in Sources */,
 				4995835D153B022B001E4719 /* Account.m in Sources */,
-				4961B30E153DF8B800B875C8 /* NSMutableArray+Players.m in Sources */,
 				4961B311153DF91000B875C8 /* NSMutableArray+Accounts.m in Sources */,
 				498270741545F0A0001FBEC5 /* NSMutableArray+Characters.m in Sources */,
 				498270771545F1DB001FBEC5 /* Character.m in Sources */,
